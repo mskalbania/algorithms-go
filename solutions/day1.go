@@ -5,14 +5,17 @@ import (
 )
 
 func Day1() {
-	plusMinus(&[]int32{-4, 3, -9, 0, 4, 1})
+	plusMinus([]int32{-4, 3, -9, 0, 4, 1})
 }
 
-func plusMinus(arr *[]int32) {
+/*
+Calculates ratio of positive, negative and zero values. Prints to 6 dec places.
+*/
+func plusMinus(arr []int32) {
 	var positive int
 	var negative int
 	var zeros int
-	for _, number := range *arr {
+	for _, number := range arr {
 		if number > 0 {
 			positive++
 			continue
@@ -23,7 +26,7 @@ func plusMinus(arr *[]int32) {
 		}
 		zeros++
 	}
-	fmt.Printf("%.6f\n", float32(positive)/float32(len(*arr)))
-	fmt.Printf("%.6f\n", float32(negative)/float32(len(*arr)))
-	fmt.Printf("%.6f\n", float32(zeros)/float32(len(*arr)))
+	fmt.Printf("%.6f\n", float32(positive)/float32(len(arr)))
+	fmt.Printf("%.6f\n", float32(negative)/float32(len(arr)))
+	fmt.Printf("%.6f\n", float32(zeros)/float32(len(arr)))
 }
