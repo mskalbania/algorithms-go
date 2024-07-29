@@ -7,5 +7,6 @@ func main() {
 	//solutions.Day2()
 	//solutions.Day3()
 	//solutions.Day4()
-	solutions.Day5()
+	//solutions.Day5()
+	solutions.Day6()
 }
