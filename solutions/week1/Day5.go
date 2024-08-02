@@ -9,11 +9,6 @@ import (
 	"unicode"
 )
 
-// Day5 /*
-/*
-Solution to:
-https://www.hackerrank.com/challenges/three-month-preparation-kit-camel-case/problem
-*/
 func Day5() {
 	lines := readAllLines()
 	for _, line := range lines {
@@ -35,6 +30,10 @@ func readAllLines() []string {
 	return lines
 }
 
+/*
+Solution to:
+https://www.hackerrank.com/challenges/three-month-preparation-kit-camel-case/problem
+*/
 func convert(s string, objectType string, operation string) []string {
 	switch operation {
 	case "S":

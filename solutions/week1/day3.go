@@ -12,6 +12,7 @@ func Day3() {
 
 /*
 Converts 12h to 24h format
+https://www.hackerrank.com/challenges/three-month-preparation-kit-time-conversion/problem
 */
 func timeConversion(s string) string {
 	suffix := s[len(s)-2:]

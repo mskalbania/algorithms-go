@@ -1,16 +1,10 @@
 package main
 
 import (
-	"hackerrank-go/concurrency"
+	"hackerrank-go/solutions/week1"
 )
 
 func main() {
-	//week1.Day1()
-	//week1.Day2()
-	//week1.Day3()
-	//week1.Day4()
-	//week1.Day5()
-	//week1.Day6()
 
-	concurrency.ExampleRun()
+	week1.Day1()
 }

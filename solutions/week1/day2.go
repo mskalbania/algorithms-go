@@ -9,6 +9,7 @@ func Day2() {
 /*
 Given fives positive integers,
 finds the minimum and maximum values that can be calculated by summing exactly four of the five integers.
+https://www.hackerrank.com/challenges/three-month-preparation-kit-mini-max-sum/problem
 */
 func miniMaxSum(arr []int32) {
 	var sumOfAll int64

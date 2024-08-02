@@ -10,6 +10,7 @@ func Day1() {
 
 /*
 Calculates ratio of positive, negative and zero values. Prints to 6 dec places.
+https://www.hackerrank.com/challenges/three-month-preparation-kit-plus-minus/problem
 */
 func plusMinus(arr []int32) {
 	var positive int
