@@ -1,6 +1,6 @@
 package main
 
-import "hackerrank-go/custom"
+import "hackerrank-go/concurrency"
 
 func main() {
 	//solutions.Day1()
@@ -9,5 +9,6 @@ func main() {
 	//solutions.Day4()
 	//solutions.Day5()
 	//solutions.Day6()
-	custom.StartTennisMatch()
+
+	concurrency.ExampleRun()
 }
