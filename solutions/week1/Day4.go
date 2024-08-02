@@ -1,4 +1,4 @@
-package solutions
+package week1
 
 import "fmt"
 
