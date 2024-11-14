@@ -1,10 +1,10 @@
 package main
 
 import (
-	"hackerrank-go/solutions/week1"
+	"hackerrank-go/solutions/week3"
 )
 
 func main() {
 
-	week1.Day1()
+	week3.Day2()
 }
