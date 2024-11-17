@@ -9,7 +9,6 @@ import (
 func pickingNumbers(a []int32) int32 {
 	slices.Sort(a)
 	maxLen := int32(math.MinInt32)
-
 	currentLen := 1
 	var currentDiff int32
 	for i := 0; i < len(a); i++ {
