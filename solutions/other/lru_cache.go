@@ -17,7 +17,7 @@ type entry[K comparable, V any] struct {
 	val V
 }
 
-func New[K comparable, V any](capacity int) *LRUCache[K, V] {
+func NewLRUCache[K comparable, V any](capacity int) *LRUCache[K, V] {
 	return &LRUCache[K, V]{
 		capacity:   capacity,
 		cache:      make(map[K]*list.Element),
