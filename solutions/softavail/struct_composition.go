@@ -2,8 +2,8 @@ package softavail
 
 import (
 	"errors"
-	"fmt"
 	"slices"
+	"strconv"
 	"strings"
 	"time"
 )
@@ -21,7 +21,7 @@ type Windows struct {
 func (w Windows) details() []string {
 	return []string{
 		w.name,
-		fmt.Sprintf("%v", w.isFree),
+		strconv.FormatBool(w.isFree),
 		w.expiryDate.Format("2006-01-02 15:04:05 -0700 MST"),
 	}
 }
@@ -34,7 +34,9 @@ type Linux struct {
 func (l Linux) details() []string {
 	return []string{
 		l.name,
-		fmt.Sprintf("%v", l.isFree),
+		strconv.FormatBool(l.isFree),
+		strconv.FormatBool(l.aptBased),
+		strconv.FormatBool(l.yumBased),
 	}
 }
 
