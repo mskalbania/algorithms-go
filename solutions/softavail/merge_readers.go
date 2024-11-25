@@ -5,10 +5,10 @@ import (
 	"io"
 )
 
-// MergeReaders Merges readers so that they read on byte at the time.
+// Merges readers so that they read on byte at the time.
 // If any reader contains more data trim to the lower one.
 // Example: r1 - abc, r2 - ABCD, result - aAbBcC
-func MergeReaders(r1, r2 io.Reader) io.Reader {
+func mergeReaders(r1, r2 io.Reader) io.Reader {
 	b1 := make([]byte, 1)
 	b2 := make([]byte, 1)
 	buffer := bytes.Buffer{}

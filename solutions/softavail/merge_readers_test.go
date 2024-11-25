@@ -47,7 +47,7 @@ func TestMergeReadersWorksCorrectly(t *testing.T) {
 	}
 	for _, datum := range testData {
 		t.Run(datum.name, func(t *testing.T) {
-			resultReader := MergeReaders(datum.r1, datum.r2)
+			resultReader := mergeReaders(datum.r1, datum.r2)
 			buffer := bytes.Buffer{}
 			_, err := io.Copy(&buffer, resultReader)
 
