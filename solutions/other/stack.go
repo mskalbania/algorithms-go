@@ -6,7 +6,7 @@ import (
 	"sync"
 )
 
-var StackEmptyErr = errors.New("stack empty")
+var ErrStackEmpty = errors.New("stack empty")
 
 var maxUnusedSpace = 50
 
@@ -25,13 +25,13 @@ func (s *Stack[T]) Pop() (T, error) {
 	s.lock.Lock()
 	defer s.lock.Unlock()
 	if len(s.arr) < 1 {
-		var empty interface{}
-		return empty, StackEmptyErr
+		var empty T
+		return empty, ErrStackEmpty
 	}
 	last := s.arr[len(s.arr)-1]
 	s.arr = s.arr[:len(s.arr)-1]
 	if cap(s.arr)-len(s.arr) > maxUnusedSpace {
-		slices.Clip(s.arr)
+		s.arr = slices.Clip(s.arr)
 	}
 	return last, nil
 }

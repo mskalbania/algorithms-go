@@ -1,7 +1,7 @@
 package week3
 
 // https://www.hackerrank.com/challenges/three-month-preparation-kit-sock-merchant/problem
-func sockMerchant(n int32, ar []int32) int32 {
+func sockMerchant(_ int32, ar []int32) int32 {
 	byColour := make(map[int32]int32)
 	for _, sock := range ar {
 		_, contains := byColour[sock]
