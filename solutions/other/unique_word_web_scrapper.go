@@ -28,46 +28,14 @@ type result struct {
 }
 
 func (s *Scrapper) Scrap(urls []string) map[string]int {
-	jobs := make(chan string, len(urls))
+	jobs := toChanel(urls)
 	results := make(chan result, len(urls))
 
 	var wg sync.WaitGroup
 	wg.Add(s.concurrencyLevel)
 	for i := 0; i < s.concurrencyLevel; i++ {
-		go func() {
-			defer wg.Done()
-			for url := range jobs {
-				result := result{url: url}
-				rs, err := s.client.Get(url)
-				if err != nil {
-					result.err = err
-					results <- result
-					continue
-				}
-				body, err := io.ReadAll(rs.Body)
-				if err != nil {
-					result.err = err
-					results <- result
-					continue
-				}
-				_ = rs.Body.Close()
-				fields := strings.Fields(string(body))
-				result.uniqueWords = make(map[string]int)
-				for _, field := range fields {
-					word := strings.Trim(field, ".,!?()[]{}\\\"':;")
-					if word != "" {
-						result.uniqueWords[word]++
-					}
-				}
-				results <- result
-			}
-		}()
+		go s.processUrl(jobs, results, &wg)
 	}
-
-	for _, url := range urls {
-		jobs <- url
-	}
-	close(jobs)
 
 	go func() {
 		wg.Wait()
@@ -85,4 +53,42 @@ func (s *Scrapper) Scrap(urls []string) map[string]int {
 		}
 	}
 	return wordsCount
+}
+
+func toChanel(urls []string) chan string {
+	ch := make(chan string, len(urls))
+	for _, url := range urls {
+		ch <- url
+	}
+	close(ch)
+	return ch
+}
+
+func (s *Scrapper) processUrl(urls <-chan string, results chan<- result, wg *sync.WaitGroup) {
+	defer wg.Done()
+	for url := range urls {
+		result := result{url: url}
+		rs, err := s.client.Get(url)
+		if err != nil {
+			result.err = err
+			results <- result
+			continue
+		}
+		body, err := io.ReadAll(rs.Body)
+		if err != nil {
+			result.err = err
+			results <- result
+			continue
+		}
+		_ = rs.Body.Close()
+		fields := strings.Fields(string(body))
+		result.uniqueWords = make(map[string]int)
+		for _, field := range fields {
+			word := strings.Trim(field, ".,!?()[]{}\\\"':;")
+			if word != "" {
+				result.uniqueWords[word]++
+			}
+		}
+		results <- result
+	}
 }
