@@ -24,7 +24,6 @@ type Result struct {
 type Option func(*ProductAggregator) error
 
 func WithConcurrency(concurrency int) Option {
-
 	return func(aggregator *ProductAggregator) error {
 		if concurrency <= 0 {
 			return fmt.Errorf("concurrency must be positive")
